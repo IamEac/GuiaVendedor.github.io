@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiamondSistem - Manual para Vendedores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #2c3e50;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: #f8f9fa;
+            border-right: 1px solid #e8eaed;
+            padding: 24px 0;
+            overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-content {
+            padding: 0 16px;
+        }
+
+        .sidebar-header {
+            padding: 0 12px 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .sidebar-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #5f6368;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: #e8eaed;
+            color: #2c3e50;
+        }
+
+        .sidebar-nav a.active {
+            background: #cfe9ff;
+            color: #1967d2;
+            font-weight: 500;
+        }
+
+        .sidebar-section {
+            margin-top: 24px;
+        }
+
+        .sidebar-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #80868b;
+            padding: 8px 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 48px;
+            max-width: 900px;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 16px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #e8eaed;
+        }
+
+        .section h2:first-child {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+            color: #3c4043;
+            font-size: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+            padding-left: 28px;
+            position: relative;
+            color: #3c4043;
+            font-size: 15px;
+        }
+
+        .section li:before {
+            content: "→";
+            position: absolute;
+            left: 8px;
+            color: #5f6368;
+            font-weight: 500;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            color: #d33682;
+            overflow-x: auto;
+        }
+
+        .code-inline {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            color: #d33682;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #4285f4;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+
+        .info-box strong {
+            color: #1967d2;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #0d47a1;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #fbbc04;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #e65100;
+            font-size: 14px;
+        }
+
+        /* Step boxes */
+        .step-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            border-left: 4px solid #4285f4;
+        }
+
+        .step-box h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1967d2;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .step-box ul {
+            margin: 8px 0;
+        }
+
+        .step-box li {
+            color: #3c4043;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            color: #202124;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e8eaed;
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 24px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <div class="sidebar-logo">💎 DiamondSistem</div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">Introducción</div>
+                        <li><a href="#inicio" class="active">Inicio</a></li>
+                        <li><a href="#acceso">Acceso al Sistema</a></li>
+                        <li><a href="#dashboard">Dashboard Principal</a></li>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">Funciones Principales</div>
+                        <li><a href="#clientes">Gestión de Clientes</a></li>
+                        <li><a href="#ofertas">Crear Ofertas</a></li>
+                        <li><a href="#gestionar-ofertas">Gestionar Ofertas</a></li>
+                        <li><a href="#contratos">Gestión de Contratos</a></li>
+                        <li><a href="#leads">Gestión de Leads</a></li>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-title">Recursos</div>
+                        <li><a href="#funciones">Funciones Adicionales</a></li>
+                        <li><a href="#consejos">Consejos Útiles</a></li>
+                        <li><a href="#problemas">Solución de Problemas</a></li>
+                        <li><a href="#soporte">Soporte</a></li>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="page-header" id="inicio">
+                <h1>Manual de Vendedor</h1>
+                <p>Guía completa para gestionar clientes, ofertas y contratos en DiamondSistem. Aquí encontrarás todo lo que necesitas para maximizar tus ventas.</p>
+            </div>
+
+            <!-- Acceso al Sistema -->
+            <section class="section" id="acceso">
+                <h2>Acceso al Sistema</h2>
+                <p>Para comenzar a trabajar en DiamondSistem, necesitas acceder con tus credenciales de vendedor.</p>
+
+                <h3>Pasos para iniciar sesión</h3>
+                <ul>
+                    <li>Abre <span class="code-inline">https://diamondsistem-vendedor.vercel.app/login</span></li>
+                    <li>Ingresa tu código de vendedor (ejemplo: <span class="code-inline">VEND026</span>)</li>
+                    <li>Ingresa tu contraseña</li>
+                    <li>Haz clic en "Iniciar Sesión"</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Tip:</strong>
+                    <p>Asegúrate de no tener espacios extras en tu código o contraseña. Si tienes problemas, contacta al administrador del sistema.</p>
+                </div>
+            </section>
+
+            <!-- Dashboard Principal -->
+            <section class="section" id="dashboard">
+                <h2>Dashboard Principal</h2>
+                <p>Una vez que inicies sesión, accederás a tu panel principal donde podrás ver información general de tu negocio.</p>
+
+                <h3>Qué encontrarás en el dashboard</h3>
+                <ul>
+                    <li><strong>Resumen de clientes:</strong> Visualiza todos tus clientes activos y su información</li>
+                    <li><strong>Ofertas:</strong> Ve el estado de tus ofertas pendientes, aceptadas y rechazadas</li>
+                    <li><strong>Contratos:</strong> Accede a todos tus contratos y su estado de pago</li>
+                    <li><strong>Estadísticas de ventas:</strong> Monitorea tu desempeño y crecimiento</li>
+                    <li><strong>Accesos rápidos:</strong> Navega fácilmente a las funciones principales</li>
+                </ul>
+            </section>
+
+            <!-- Gestión de Clientes -->
+            <section class="section" id="clientes">
+                <h2>Gestión de Clientes</h2>
+                <p>Aquí puedes crear nuevos clientes, buscarlos y visualizar toda su información relacionada.</p>
+
+                <h3>Crear un nuevo cliente</h3>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>Dirígete al menú lateral y haz clic en <strong>"Clientes"</strong></li>
+                    <li>Haz clic en el botón <strong>"Nuevo Cliente"</strong> (arriba a la derecha)</li>
+                    <li>Completa los siguientes campos:</li>
+                </ol>
+
+                <div class="step-box">
+                    <h4>Campos requeridos (*)</h4>
+                    <ul>
+                        <li><strong>Nombre completo:</strong> Nombre y apellido del cliente</li>
+                        <li><strong>Email:</strong> Correo electrónico para contacto</li>
+                        <li><strong>Teléfono:</strong> Número de teléfono del cliente</li>
+                        <li><strong>Dirección:</strong> Dirección completa (opcional)</li>
+                        <li><strong>Tipo de evento:</strong> Boda, Eventos corporativos, Cumpleaños, etc.</li>
+                        <li><strong>¿Cómo nos conoció?:</strong> Referencia, Google, Redes sociales, etc.</li>
+                    </ul>
+                </div>
+
+                <ol style="list-style: decimal; margin-left: 20px;" start="4">
+                    <li>Haz clic en <strong>"Guardar Cliente"</strong></li>
+                </ol>
+
+                <h3>Ver y buscar clientes</h3>
+                <p>En la sección de Clientes encontrarás una lista con todas tus contactos donde puedes:</p>
+                <ul>
+                    <li>Buscar por nombre o teléfono</li>
+                    <li>Filtrar por tipo de evento</li>
+                    <li>Ver todos los contratos asociados a cada cliente</li>
+                    <li>Editar información del cliente</li>
+                </ul>
+            </section>
+
+            <!-- Crear Ofertas -->
+            <section class="section" id="ofertas">
+                <h2>Crear Ofertas</h2>
+                <p>Las ofertas son propuestas personalizadas que envías a tus clientes. Pueden incluir paquetes, servicios adicionales y ajustes de precios.</p>
+
+                <h3>Pasos para crear una oferta</h3>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>Ve al menú → <strong>"Ofertas"</strong> → <strong>"Nueva Oferta"</strong></li>
+                </ol>
+
+                <h3>Paso 1: Seleccionar cliente</h3>
+                <p>Elige un cliente de la lista o crea uno nuevo directamente desde este formulario.</p>
+
+                <h3>Paso 2: Detalles del evento</h3>
+                <div class="step-box">
+                    <h4>Información del evento</h4>
+                    <ul>
+                        <li><strong>Fecha del evento:</strong> Cuándo ocurrirá el evento</li>
+                        <li><strong>Cantidad de invitados:</strong> Número aproximado de personas</li>
+                        <li><strong>Hora inicio y fin:</strong> Duración del evento</li>
+                        <li><strong>Lugar del evento:</strong> Ubicación donde se realizará</li>
+                    </ul>
+                </div>
+
+                <h3>Paso 3: Seleccionar paquete base</h3>
+                <p>Elige un paquete predefinido como Paquete Oro, Paquete Plata, etc. El sistema mostrará automáticamente el precio base.</p>
+
+                <h3>Paso 4: Temporada especial (opcional)</h3>
+                <p>Si el evento ocurre en una temporada especial (feriados, fin de año, etc.), selecciona la opción correspondiente. El sistema ajustará automáticamente el precio.</p>
+
+                <h3>Paso 5: Servicios adicionales</h3>
+                <p>Personaliza la oferta agregando servicios adicionales:</p>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>Haz clic en <strong>"Agregar Servicio"</strong></li>
+                    <li>Selecciona el tipo de servicio (Fotografía, Video, Decoración, etc.)</li>
+                    <li>Define la cantidad requerida</li>
+                    <li>Agrega opciones especiales si corresponde</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Negociación flexible:</strong>
+                    <p>Puedes ajustar los precios de cada servicio durante la negociación. Todos los cambios quedan registrados en el sistema.</p>
+                </div>
+
+                <h3>Paso 6: Calculadora de precios</h3>
+                <p>En el panel derecho, el sistema muestra automáticamente:</p>
+                <div class="step-box">
+                    <h4>Desglose de precio</h4>
+                    <ul>
+                        <li>Subtotal del paquete base</li>
+                        <li>Costo de servicios adicionales</li>
+                        <li>Ajuste por temporada especial</li>
+                        <li>IVA (7%)</li>
+                        <li>Service Fee (18%)</li>
+                        <li><strong>Total final</strong></li>
+                    </ul>
+                </div>
+
+                <h3>Paso 7: Aplicar descuento (opcional)</h3>
+                <p>Si necesitas ofrecer un descuento, puedes ingresar un porcentaje o un monto fijo. El total se actualiza automáticamente.</p>
+
+                <h3>Paso 8: Notas internas</h3>
+                <p>Agrega observaciones privadas que solo tú verás. Útil para recordatorios personales o detalles importantes.</p>
+
+                <h3>Crear la oferta</h3>
+                <p>Haz clic en <strong>"Crear Oferta"</strong>. La oferta se creará con estado "Pendiente" y se enviará automáticamente al cliente por email.</p>
+            </section>
+
+            <!-- Gestionar Ofertas -->
+            <section class="section" id="gestionar-ofertas">
+                <h2>Gestionar Ofertas</h2>
+                <p>Una vez creada una oferta, puedes hacer seguimiento de su estado y tomar acciones.</p>
+
+                <h3>Ver todas tus ofertas</h3>
+                <ul>
+                    <li>Ve al menú → <strong>"Ofertas"</strong></li>
+                    <li>Utiliza los filtros para ver ofertas por estado: Pendiente, Aceptada, Rechazada</li>
+                </ul>
+
+                <h3>Estados de ofertas</h3>
+                <table>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Pendiente</strong></td>
+                        <td>La oferta fue enviada pero el cliente aún no responde</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aceptada</strong></td>
+                        <td>El cliente aceptó la oferta y se puede crear un contrato</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rechazada</strong></td>
+                        <td>El cliente rechazó la oferta (con motivo registrado)</td>
+                    </tr>
+                </table>
+
+                <h3>Aceptar o rechazar una oferta</h3>
+                <p>En las ofertas pendientes, tienes dos opciones:</p>
+                <ul>
+                    <li><strong>Aceptar:</strong> Haz clic en "Aceptar Oferta" para cambiar el estado a "Aceptada"</li>
+                    <li><strong>Rechazar:</strong> Haz clic en "Rechazar" e ingresa el motivo del rechazo</li>
+                </ul>
+
+                <h3>Crear contrato desde oferta aceptada</h3>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>Busca una oferta con estado "Aceptada"</li>
+                    <li>Haz clic en <strong>"Crear Contrato"</strong></li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>✓ Contrato creado:</strong>
+                    <p>El sistema genera automáticamente un código de contrato único, un código de acceso para el cliente y copia toda la información de la oferta.</p>
+                </div>
+            </section>
+
+            <!-- Gestión de Contratos -->
+            <section class="section" id="contratos">
+                <h2>Gestión de Contratos</h2>
+                <p>Los contratos son acuerdos formales que se generan después de que una oferta es aceptada. Aquí gestionas los términos y registras los pagos.</p>
+
+                <h3>Ver tus contratos</h3>
+                <ul>
+                    <li>Ve al menú → <strong>"Contratos"</strong></li>
+                    <li>Visualiza una lista de todos tus contratos con sus estados</li>
+                </ul>
+
+                <h3>Estados de contratos</h3>
+                <table>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Activo</strong></td>
+                        <td>El evento aún no ha ocurrido</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Completado</strong></td>
+                        <td>El evento ha sido realizado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cancelado</strong></td>
+                        <td>El contrato fue cancelado por el cliente</td>
+                    </tr>
+                </table>
+
+                <h3>Estados de pago</h3>
+                <table>
+                    <tr>
+                        <th>Estado</th>
+                        <th>Significado</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Pendiente</strong></td>
+                        <td>No se ha registrado ningún pago</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parcial</strong></td>
+                        <td>Se han recibido algunos pagos pero no el total</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pagado</strong></td>
+                        <td>El monto total ha sido cancelado</td>
+                    </tr>
+                </table>
+
+                <h3>Ver detalles de un contrato</h3>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>Selecciona el contrato que deseas ver</li>
+                    <li>Haz clic en <strong>"Ver Detalles"</strong></li>
+                </ol>
+
+                <p>En la vista de detalles encontrarás:</p>
+                <div class="step-box">
+                    <h4>Información completa del contrato</h4>
+                    <ul>
+                        <li>Información general del evento</li>
+                        <li>Detalles del paquete y servicios contratados</li>
+                        <li>Resumen financiero completo</li>
+                        <li>Código de acceso que tiene el cliente</li>
+                        <li>Historial completo de pagos</li>
+                    </ul>
+                </div>
+
+                <h3>Registrar pagos</h3>
+                <ol style="list-style: decimal; margin-left: 20px;">
+                    <li>En el detalle del contrato, dirígete a la sección <strong>"Pagos"</strong></li>
+                    <li>Haz clic en <strong>"Registrar Pago"</strong></li>
+                    <li>Completa los siguientes datos:</li>
+                </ol>
+
+                <div class="step-box">
+                    <h4>Información del pago</h4>
+                    <ul>
+                        <li><strong>Monto:</strong> Cantidad pagada</li>
+                        <li><strong>Método de pago:</strong> Efectivo, Tarjeta de crédito, Transferencia bancaria, etc.</li>
+                        <li><strong>Número de referencia:</strong> Número de transacción (si aplica)</li>
+                        <li><strong>Notas:</strong> Comentarios adicionales sobre el pago</li>
+                    </ul>
+                </div>
+
+                <ol style="list-style: decimal; margin-left: 20px;" start="4">
+                    <li>Haz clic en <strong>"Guardar Pago"</strong></li>
+                </ol>
+
+                <p>El sistema actualiza automáticamente:</p>
+                <ul>
+                    <li>Total pagado hasta el momento</li>
+                    <li>Saldo pendiente</li>
+                    <li>Barra de progreso de pagos</li>
+                    <li>Estado del contrato (si está completamente pagado)</li>
+                </ul>
+            </section>
+
+            <!-- Gestión de Leads -->
+            <section class="section" id="leads">
+                <h2>Gestión de Leads</h2>
+                <p>Los leads son potenciales clientes que aún no se han convertido en compradores. Aquí puedes hacer seguimiento de su interés.</p>
+
+                <h3>Ver tus leads asignados</h3>
+                <ul>
+                    <li>Ve al menú → <strong>"Leads"</strong></li>
+                    <li>Visualiza la lista de leads asignados a ti</li>
+                    <li>Filtra por estado: Nuevo, Interesado, Contactado, etc.</li>
+                </ul>
+
+                <h3>Gestionar un lead</h3>
+                <p>Para cada lead puedes:</p>
+                <ul>
+                    <li><strong>Actualizar estado:</strong> Marca el progreso del lead en el proceso de venta</li>
+                    <li><strong>Agregar notas:</strong> Registra detalles importantes de tus conversaciones</li>
+                    <li><strong>Programar seguimiento:</strong> Establece recordatorios para contactar al lead</li>
+                    <li><strong>Convertir a cliente:</strong> Cuando el lead esté listo, conviértelo en un cliente formal</li>
+                </ul>
+            </section>
+
+            <!-- Funciones Adicionales -->
+            <section class="section" id="funciones">
+                <h2>Funciones Adicionales</h2>
+                <p>DiamondSistem ofrece varias funciones complementarias para facilitar tu trabajo.</p>
+
+                <h3>Descargar PDFs</h3>
+                <ul>
+                    <li><strong>Ofertas:</strong> Descarga tus ofertas en formato Proforma para enviar profesionalmente</li>
+                    <li><strong>Contratos:</strong> Genera PDFs con términos, condiciones y toda la información del evento</li>
+                </ul>
+
+                <h3>Chat con clientes</h3>
+                <p>Comunícate directamente con tus clientes desde el sistema sin salir de la plataforma. Mantén un historial completo de mensajes para referencia futura.</p>
+
+                <h3>Calendario</h3>
+                <p>Visualiza todos los eventos programados en un calendario interactivo. Perfecto para no perder ninguna fecha importante.</p>
+            </section>
+
+            <!-- Consejos Útiles -->
+            <section class="section" id="consejos">
+                <h2>Consejos Útiles</h2>
+                <p>Aquí encontrarás recomendaciones para aprovechar al máximo el sistema.</p>
+
+                <h3>🔒 Seguridad de tu cuenta</h3>
+                <ul>
+                    <li>Cambia tu contraseña regularmente desde <strong>Perfil → Cambiar contraseña</strong></li>
+                    <li>Utiliza contraseñas seguras que combinen números, letras y caracteres especiales</li>
+                    <li>No compartas tu código de vendedor con nadie</li>
+                </ul>
+
+                <h3>💾 Guardado automático</h3>
+                <p>El sistema guarda automáticamente todos tus cambios. Puedes cerrar la sesión en cualquier momento y continuar después sin perder información.</p>
+
+                <h3>🤝 Negociación flexible</h3>
+                <p>Recuerda que puedes ajustar precios de servicios adicionales durante la negociación con clientes. Todos los cambios quedan registrados para transparencia.</p>
+
+                <h3>📞 Seguimiento de ofertas</h3>
+                <ul>
+                    <li>Revisa regularmente tus ofertas pendientes</li>
+                    <li>Contacta a clientes para resolver dudas y acelerar el proceso</li>
+                    <li>Mantén registros de todas las conversaciones</li>
+                </ul>
+
+                <h3>📝 Usa notas internas</h3>
+                <p>Las notas internas son solo para ti. Úsalas para recordar detalles, preferencias del
